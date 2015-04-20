@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2015 j3dev
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.j3dev.managedtoast;
 
 import android.annotation.SuppressLint;
@@ -17,7 +32,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class ManagedToast {
-    private static HashSet<Toast> mToasts = new HashSet<>();
+    private static HashSet<Toast> sToasts = new HashSet<>();
 
     private Toast mToast;
 
@@ -80,7 +95,7 @@ public class ManagedToast {
     }
 
     public void show() {
-        mToasts.add(mToast);
+        sToasts.add(mToast);
         mToast.show();
     }
 
@@ -88,7 +103,7 @@ public class ManagedToast {
      * Cancels currently showing ManagedToast and remove all ManagedToasts from the queue
      */
     public static void cancelAll() {
-        Iterator<Toast> i = mToasts.iterator();
+        Iterator<Toast> i = sToasts.iterator();
         while (i.hasNext()) {
             Toast toast = i.next();
             if (toast != null) toast.cancel();
@@ -101,7 +116,7 @@ public class ManagedToast {
      * @return true if a toast was canceled, false if there was nothing to cancel
      */
     public static boolean cancelCurrent() {
-        Iterator<Toast> i = mToasts.iterator();
+        Iterator<Toast> i = sToasts.iterator();
         while (i.hasNext()) {
             Toast toast = i.next();
             boolean shown = false;
