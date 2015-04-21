@@ -28,11 +28,12 @@ import android.widget.Toast;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class ManagedToast {
-    private static HashSet<Toast> sToasts = new HashSet<>();
+    private static Set<Toast> sToasts = new LinkedHashSet<>();
 
     private Toast mToast;
 
